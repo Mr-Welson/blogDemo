@@ -1,0 +1,49 @@
+@charset "UTF-8";
+/**
+ * sass函数库
+ */
+/**
+ * 字体颜色
+ */
+/**
+ * 安全级别颜色
+ */
+/**
+ * 字体大小
+ */
+/**
+ * 通用样式类
+ */
+.screen-cover {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999; }
+
+.clearfix:after {
+  content: '.';
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+  overflow: hidden; }
+
+.fl {
+  float: left; }
+
+.fr {
+  float: right; }
+
+/**
+ * 项目公用样式类
+ */
+/* 
+  样式重置
+ */
+
+/*# sourceMappingURL=base.css.map */

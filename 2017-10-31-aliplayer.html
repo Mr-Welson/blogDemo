@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="x-ua-compatible" content="IE=edge" >
+<meta name="viewport"   content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+<title>Aliplayer在线配置</title>
+<link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/2.1.0/skins/default/aliplayer-min.css" />
+<script type="text/javascript" src="//g.alicdn.com/de/prismplayer/2.1.0/aliplayer-min.js"></script>
+<style>
+	.prism-player{
+		position: relative;
+	}
+	h3{
+		position: absolute;
+    top: 0;
+    left: 0;
+    color: #fff;
+    height: 60px;
+    font-size: 14px;
+    width: 100%;
+    background: rgba(0,0,0,.6);
+    margin: 0;
+    line-height: 60px;
+    text-indent: 40px;
+	}
+
+</style>
+</head>
+<body>
+ 	<div  class="prism-player" id="J_prismPlayer">
+ 		<!-- <h3>我的院子》摄像头2222</h3> -->
+ 	</div>
+ 	<button onclick="changeUrl()">切换播放源</button>
+ 	<button onclick="changeLive()">切换播放模式</button>
+ 	<script>
+ 		var token = '537020375_0_1509517240_7a12ee996fbeec7418959cb4dce67e38';
+ 		var hls = 'http://122.226.181.27/live/537020375/index.m3u8';
+ 		var rtmp = 'rtmp://7ae2b51b.server.topvdn.com:1935/';
+ 		var hlsUrl = hls+"?client_token="+token;
+		var rtmpUrl = rtmp+"live/"+token;
+		var localUrl = './assets/media/poppin.mp4';
+		var i = 0;
+    var player = new Aliplayer({
+	    id: "J_prismPlayer",
+			// autoplay: true,
+			isLive:false,
+			// playsinline:true,
+			width:"100%",
+			height:"400px",
+			controlBarVisibility:"hover",
+			showBarTime:"2000",
+			useH5Prism:true,
+			// useFlashPrism:true,
+			// source:hlsUrl,
+			source:rtmpUrl,
+			// source:localUrl,
+			// source:"//player.alicdn.com/video/aliyunmedia.mp4",
+			// cover:""                  
+		});
+
+    console.log(player)
+
+    function changeUrl(){
+			i++;
+    	var urlJson = {
+    		0:hlsUrl,
+    		1:rtmpUrl,
+    		2:localUrl,
+    	}
+    	player._options.source = urlJson[i%3];
+    	console.log(player)
+    }
+
+    function changeLive(){
+    	player._options.isLive = false;
+    	console.log(player)
+    }
+
+  </script>
+</body>

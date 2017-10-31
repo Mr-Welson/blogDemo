@@ -1,0 +1,165 @@
+---
+layout: post
+title: 标签云
+date: 2017-10-25
+tags: [js]
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>标签云</title>
+	<style>
+	body{
+		/*background-color: #24313d;*/
+	}
+	.tag-wrap{
+		width: 600px;
+		height: 500px;
+		margin: 50px auto;
+		background-color: #24313d;
+		overflow: hidden;
+	}
+	#tag-list{
+		border:1px solid red;
+		margin:100px auto;
+		position: relative;
+		border-radius: 50%;
+	}
+	</style>
+</head>
+<body>
+<div class="tag-wrap">
+	<div id="tag-list"></div>
+</div>
+<script>
+var TagList = (function(){
+	var _option = {
+		id:'',
+		tagList:[],
+		radius: 100, // 半径
+	}
+	var _tags = {
+		init: function(config){
+			if(!config.id){
+				return alert('请输入id')
+			}
+			if(!config.radius){
+				return alert('请输入半径')
+			}
+			for(var key in config){
+				_option[key] = config[key]
+			}
+			this.createCircle(_option)
+		},
+		// 生成圆形区域
+		createCircle: function(option) {
+			var oDiv = document.getElementById(option.id);
+			oDiv.style.width = option.radius*2 + 'px';
+			oDiv.style.height = option.radius*2 + 'px';
+			option.tagList.map(function(v,k) {
+				// var oSpan = document.createElement('span');
+				var oA = document.createElement('a');
+				oA.innerHTML = v.label;
+				oA.href = v.link;
+				oA.style.padding = '3px 6px';
+				oA.style.fontWeight = 'bold';
+				oA.style.position = 'absolute';
+				oA.style.textDecoration = 'none';
+				oA.style.color = '#fff';
+				oA.style.hover = 'color:red;';
+				// oSpan.appendChild(oA);
+				oDiv.appendChild(oA);
+			})
+			this.initPosition(option)
+		},
+		// 设置初始随机位置
+		initPosition: function(option) {
+			var oDiv = document.getElementById(option.id);
+			var oAList = oDiv.getElementsByTagName('a');
+			oAList = Array.prototype.slice.call(oAList);
+	 	/*// 随机排序
+			oAList.sort(function () {
+				return Math.random()<0.5?1:-1;
+			})*/
+			var max = oAList.length;
+			var r = option.radius; // 半径
+			oAList.map(function(v,k) {
+				// 角度(将Math.PI*2(360deg)按照max平分)
+				var deg = Math.PI*2*(k+1)/max;
+				var theta = Math.sqrt(max*Math.PI/(k+1))*deg;
+				// 为避免标签全部分布在最边缘，将半径也均匀分布
+				// 坐标轴x位置
+				var cx = r*Math.sin(deg) * Math.sin(theta)
+				// 坐标轴y位置  Math.abs(Math.sin(Math.PI*k/max))
+				var cy = r*Math.cos(deg) * Math.sin(theta)
+				// 定位left及top值
+				v.style.left = cx + r - v.offsetWidth/2 + 'px';
+				v.style.top = cy + r - v.offsetHeight/2 + 'px';
+			})
+		},
+	}
+	return _tags
+}());
+
+var tagList = [
+	{label:'巨魔',link:'#'},
+	{label:'大牛',link:'#'},
+	{label:'赏金',link:'#'},
+	{label:'牛头',link:'#'},
+	{label:'剑圣',link:'#'},
+	{label:'小鱼',link:'#'},
+	{label:'火女',link:'#'},
+	{label:'冰女',link:'#'},
+	{label:'蓝猫',link:'#'},
+	{label:'影魔',link:'#'},
+	{label:'夜魔',link:'#'},
+	{label:'黑鸟',link:'#'},
+	{label:'地卜师',link:'#'},
+	{label:'火枪',link:'#'},
+	{label:'小黑',link:'#'},
+	{label:'炸弹人',link:'#'},
+	{label:'幽鬼',link:'#'},
+	{label:'炼金',link:'#'},
+	{label:'幻刺',link:'#'},
+	{label:'一姐',link:'#'},
+	{label:'白牛',link:'#'},
+	{label:'暗牧',link:'#'},
+	{label:'小Y',link:'#'},
+	{label:'巫医',link:'#'},
+	{label:'巫妖',link:'#'},
+	{label:'莱恩',link:'#'},
+	{label:'小强',link:'#'},
+	{label:'隐刺',link:'#'},
+	{label:'宙斯',link:'#'},
+	{label:'痛苦',link:'#'},
+];
+var config = {
+	id: 'tag-list',
+	radius: 150,
+	tagList:tagList
+};
+
+TagList.init(config);
+
+
+</script>
+
+<!-- <script>
+	// 心形坐标
+	var max = list.length;
+	list.map(function(v,k) {
+		// 角度(将Math.PI*2(360deg)按照max平分)
+		var deg = Math.PI*2*k/max;
+		// 为避免标签全部分布在最边缘，将半径也均匀分布
+		// 坐标轴x位置
+		var cx = r*Math.abs(Math.sin(Math.PI*k/max))*Math.sin(deg)
+		// 坐标轴y位置
+		var cy = r*Math.abs(Math.sin(Math.PI*k/max))*Math.cos(deg)
+		// 定位left及top值
+		v.style.left = cx + r - v.offsetWidth/2 + 'px';
+		v.style.top = cy + r - v.offsetHeight/2 + 'px';
+	}) 
+</script> -->
+</body>
+</html>
