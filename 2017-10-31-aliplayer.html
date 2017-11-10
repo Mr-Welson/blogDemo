@@ -28,41 +28,67 @@
 </style>
 </head>
 <body>
- 	<div  class="prism-player" id="J_prismPlayer">
+ 	<div class="prism-player" id="J_prismPlayer">
  		<!-- <h3>我的院子》摄像头2222</h3> -->
  	</div>
  	<button onclick="changeUrl()">切换播放源</button>
  	<button onclick="changeLive()">切换播放模式</button>
- 	<script>
+
+ <!-- 	<object type="application/x-shockwave-flash" data="c.swf?path=movie.swf"
+	width="400" height="300">
+		<param name="movie" value="c.swf?path=movie.swf" />
+		<img src="//files2.17173.com/__flash/2011/10/21/honehone_clock_tr.swf" width="200" height="100" alt="" /> 
+	</object>-->
+
+	<!-- 透明背景 -->
+ 	<script charset="Shift_JIS" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.js"></script>
+ 	<!-- 白色背景 -->
+ 	<script charset="Shift_JIS" src="//chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_wh.js"></script>
+
+ <!-- 	<script>
+
+        //获取元素的纵坐标
+        function getTop(e){
+          var offset=e.offsetTop;
+          if(e.offsetParent!=null) offset+=getTop(e.offsetParent);
+          return offset;
+        }
+        //获取元素的横坐标
+        function getLeft(e){
+          var offset=e.offsetLeft;
+          if(e.offsetParent!=null) offset+=getLeft(e.offsetParent);
+          return offset;
+        }
+            
  		var token = '537020375_0_1509517240_7a12ee996fbeec7418959cb4dce67e38';
  		var hls = 'http://122.226.181.27/live/537020375/index.m3u8';
  		var rtmp = 'rtmp://7ae2b51b.server.topvdn.com:1935/';
  		var hlsUrl = hls+"?client_token="+token;
-		var rtmpUrl = rtmp+"live/"+token;
-		var localUrl = './assets/media/poppin.mp4';
-		var i = 0;
+ 		var rtmpUrl = rtmp+"live/"+token;
+ 		var localUrl = './assets/media/poppin.mp4';
+ 		var i = 0;
     var player = new Aliplayer({
-	    id: "J_prismPlayer",
-			// autoplay: true,
-			isLive:false,
-			// playsinline:true,
-			width:"100%",
-			height:"400px",
-			controlBarVisibility:"hover",
-			showBarTime:"2000",
-			useH5Prism:true,
-			// useFlashPrism:true,
-			// source:hlsUrl,
-			source:rtmpUrl,
-			// source:localUrl,
-			// source:"//player.alicdn.com/video/aliyunmedia.mp4",
-			// cover:""                  
-		});
-
+ 	    id: "J_prismPlayer",
+ 			// autoplay: true,
+ 			isLive:false,
+ 			// playsinline:true,
+ 			width:"100%",
+ 			height:"400px",
+ 			controlBarVisibility:"hover",
+ 			showBarTime:"2000",
+ 			useH5Prism:true,
+ 			// useFlashPrism:true,
+ 			// source:hlsUrl,
+ 			source:rtmpUrl,
+ 			// source:localUrl,
+ 			// source:"//player.alicdn.com/video/aliyunmedia.mp4",
+ 			// cover:""                  
+ 		});
+ 
     console.log(player)
-
+ 
     function changeUrl(){
-			i++;
+ 			i++;
     	var urlJson = {
     		0:hlsUrl,
     		1:rtmpUrl,
@@ -71,11 +97,11 @@
     	player._options.source = urlJson[i%3];
     	console.log(player)
     }
-
+ 
     function changeLive(){
     	player._options.isLive = false;
     	console.log(player)
     }
-
-  </script>
+  </script> -->
 </body>
+</html>

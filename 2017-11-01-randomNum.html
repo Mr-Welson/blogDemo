@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+  .box{
+    width: 760px;
+    height: 245px;
+    float: left;
+    border: #888 solid 2px;
+    margin-right: 30px;
+  }
+  #num{
+    font-family: Verdana;
+    font-size: 200px;
+    color: #888;
+  }
+  #btn{
+    float: left;
+    font-family: arial;
+    color: #14396A !important;
+    font-size: 30px;
+    padding: 14px 28px;
+    margin-top: 90px;
+    background: #63B8EE;
+	}
+	</style>
+</head>
+<body>
+  <div class="box">
+    <span id="num">000000</span>
+  </div>
+  <div>
+    <input type="button" value='生成随机数' id="btn" />
+  </div>
+	<script>
+	  var btn = document.getElementById("btn");
+	  var timer;
+	  btn.onclick = function(){
+	    getRandom();
+	    clock = setTimeout('clearTimeout(timer)',1000);
+	  }
+
+	  function getRandom() {
+	    var randomNum = Math.floor((Math.random() * 900000 + 100000));
+	    var num = document.getElementById("num");
+	    if (num != null) {
+	      num.innerHTML = randomNum;
+	    }
+	    timer = setTimeout('getRandom()', 10);
+	  }
+
+	</script>
+</body>
+</html>
